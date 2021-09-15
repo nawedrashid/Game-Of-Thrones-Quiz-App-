@@ -142,3 +142,4 @@ welcome();
 gamelvl1();
 gamelvl2();
 gamelvl3();
+showscores();
