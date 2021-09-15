@@ -3,7 +3,7 @@ var score = 0;
 var highscores = [
   {
     name: "Nawed",
-    score: 15
+    score: 30
   }
 ]
 var queslvl1 = [
