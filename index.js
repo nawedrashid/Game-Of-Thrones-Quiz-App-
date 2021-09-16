@@ -4,7 +4,15 @@ var score = 0;
 var highscores = [
   {
     name: "Nawed",
-    score: 30
+    score: 28
+  },
+  {
+    name: "Tarun",
+    score: 24
+  },
+  {
+    name: "Rahul",
+    score: 20
   }
 ]
 var queslvl1 = [
@@ -138,13 +146,23 @@ function gamelvl3()
   else if(score>=6&&score<14)
   console.log(chalk.bgRed(" Score not enough for level 3 "));
 }
-function showscores(){
+function showscore(){
   console.log(chalk.blue("YAY! You Scored: "),score);
-  console.log(chalk.blue("Check out the High Scores, if you should be there ping me and I'll update it"));
+  console.log("--------------------");
+}
+function highscore(){
+  console.log(chalk.blue("Check out the High Scores"));
   highscores.map(score=>console.log(score.name," : ",score.score))
+  if(score>20&&score<=24)
+   console.log("Congratulation!! "+chalk.blue("You beat Rahul. Send me a Screenshot and I'll update the highscores"));
+  else if(score>24&&score<=28)
+   console.log("Congratulation!! "+chalk.blue("You beat Rahul and Tarun. Send me a Screenshot and I'll update the highscores"));
+   else if(score>28)
+    console.log("Congratulation!! "+chalk.blue("You beat everyone. Send me a Screenshot and I'll update the highscores"));
 }
 welcome();
 gamelvl1();
 gamelvl2();
 gamelvl3();
-showscores();
+showscore();
+highscore();
