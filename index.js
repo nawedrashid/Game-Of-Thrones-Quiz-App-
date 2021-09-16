@@ -1,4 +1,5 @@
 var readlineSync = require("readline-sync");
+const chalk = require('chalk');
 var score = 0;
 var highscores = [
   {
@@ -73,31 +74,34 @@ var queslvl3 = [
   }
 ];
 function welcome(){
-  var username = readlineSync.question("What is your name ? ");
-  console.log("Welcome "+username+" to the Game Of Thrones Quiz.");
-  console.log("In this quiz there are three difficulty levels and each level have 5 questions each having a score of 2.");
+  var username = readlineSync.question(chalk.blue("What is your name ? "));
   console.log("--------------------");
-  console.log("To clear the first level you have to score atleast 6 and to clear second level a score of 14 is required");
+  console.log(chalk.blue("Welcome ")+chalk.bold.italic(username)+chalk.blue(" to the ")+chalk.bold.italic("Game Of Thrones Quiz."));
   console.log("--------------------");
-  console.log("Good Luck");
+  console.log(chalk.blue("In this quiz there are three difficulty levels and each level have 5 questions each having a score of 2."));
+  console.log("--------------------");
+  console.log(chalk.blue("To clear the first level you have to score atleast 6 and to clear second level a score of 14 is required"));
+  console.log("--------------------");
+  console.log(chalk.blue("Good Luck"));
 }
 function play(question, answer){
-  var useranswer = readlineSync.question(question);
+  var useranswer = readlineSync.question(chalk.blue(question));
   if(useranswer.toLowerCase() === answer.toLowerCase()){
-    console.log("Right!");
+    console.log(chalk.green("Right!"));
     score = score + 2;
   }
   else{
-      console.log("Wrong!");
+      console.log(chalk.red("Wrong!"));
   }
-  console.log("Current Score: ",score);
+  console.log(chalk.blue("Current Score: ",score));
   console.log("-------------")
 }
 function gamelvl1()
 {
   if(score<6)
   {
-    console.log("Let's begin Level 1");
+    console.log(chalk.bgBlue(" Let's begin Level 1 "));
+    console.log("--------------------");
     for(var i=0; i<queslvl1.length; i++)
     {
       var currentquestion = queslvl1[i];
@@ -109,7 +113,8 @@ function gamelvl2()
 {
   if(score>=6)
   {
-    console.log("Let's begin Level 2");
+    console.log(chalk.bgBlue(" Let's begin Level 2 "));
+    console.log("--------------------");
     for(var i=0; i<queslvl2.length; i++)
     {
       var currentquestion = queslvl2[i];
@@ -117,25 +122,25 @@ function gamelvl2()
     }
   }
   else
-  console.log("Score not enough for level 2");
+  console.log(chalk.bgRed(" Score not enough for level 2 "));
 }
 function gamelvl3()
 {
   if(score>=14)
   {
-    console.log("Let's begin Level 3");
+    console.log(chalk.bgBlue(" Let's begin Level 3 "));
     for(var i=0; i<queslvl3.length; i++)
     {
       var currentquestion = queslvl3[i];
       play(currentquestion.question,        currentquestion.answer)
     }
   }
-  else
-  console.log("Score not enough for level 3");
+  else if(score>=6&&score<14)
+  console.log(chalk.bgRed(" Score not enough for level 3 "));
 }
 function showscores(){
-  console.log("YAY! You Scored: ",score);
-  console.log("Check out the High Scores, if you should be there ping me and I'll update it");
+  console.log(chalk.blue("YAY! You Scored: "),score);
+  console.log(chalk.blue("Check out the High Scores, if you should be there ping me and I'll update it"));
   highscores.map(score=>console.log(score.name," : ",score.score))
 }
 welcome();
